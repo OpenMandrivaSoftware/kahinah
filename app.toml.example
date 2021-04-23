@@ -1,0 +1,81 @@
+# Kahinah v4 configuration file
+
+# basic configuration
+# - baseURL defines the base domain that this is served on
+baseURL = "https://kahinah.openmandriva.org"
+# - listenAddr defines the listening address
+listenAddr = "0.0.0.0"
+# - listenPort defines the listening port
+listenPort = 3000
+# - runMode determines whether on panics, we should dump the stacktrace too.
+# -- it also determines whether we should reparse templates on every load.
+# -- dev means yes, prod means no.
+runMode = "dev"
+# - urlPrefix determines whether kahinah should prefix all its routes (for use
+# -- behind a reverse proxy if needed). Leave empty if not needed.
+urlPrefix = ""
+
+# database configuration
+[database]
+# - prefix defines the prefix for the database tables
+prefix = "kh_"
+# - type defines the database type. postgres, mysql, sqlite3 are supported.
+type = "sqlite3"
+# - name defines the database name
+name = "data.sqlite"
+# - host, user, pass (self-explanatory)
+host = "localhost:3306"
+user = "root"
+pass = "toor"
+# - debug (print out statements - dangerous!)
+debug = false
+
+# authentication configuration
+# - authentication with CAS
+[authentication.cas]
+enable = false
+url = "https://auth.openmandriva.org/cas/"
+
+# integration configuration
+[integration]
+# set the polling rate for integration services to use (if supported).
+# use any crontab specification or description. leave empty to disable.
+poll = "@hourly"
+# - integration with abf
+[integration.abf]
+enable = false
+host = "https://abf.io"
+user = "kahinah_abf"
+apiKey = "apikey"
+# -- read the following platforms for updates. you should have write access to
+# the groups; else, pushing to testing will fail.
+readPlatforms = [ "openmandriva2014.0", "cooker" ]
+# -- whitelist the following architectures
+archWhitelist = [ "x86_64", "i586" ]
+# -- enable git cloning for diff creation
+gitDiff = false
+# --- enable ssh for git cloning
+gitDiffSSH = false
+
+# administrator configuration
+[admin]
+# - allow only people whitelisted to vote
+whitelist = false
+# - set the list of administrators
+administrators = ["rxu"]
+
+# mail configuration
+[mail]
+# - enable mails
+enable = false
+# - set up smtp
+smtpUser = "me@example.com"
+smtpPass = "password"
+smtpDomain = "example.com"
+smtpHost = "mail.example.com:25"
+smtpTLSVerify = true
+smtpFrom = "me@example.com"
+
+# - set up a global mailing list address. any global mails emailed to users will
+# also be sent to this mailing list.
+globalList = "mailing_list@example.com"

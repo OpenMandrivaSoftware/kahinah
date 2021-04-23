@@ -1,0 +1,8 @@
+kahinah
+*.toml
+!*.toml.example
+gin-bin
+news.md
+*~
+*.swp
+data.sqlite
